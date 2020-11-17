@@ -1,8 +1,5 @@
 import java.util.ArrayList;
 import java.util.List;
-
-
-
 import java.util.HashMap;
 
 
@@ -48,7 +45,7 @@ public boolean isTwoColourable(){
 //edge that belongs to this graph does not connect vertices from the same set.
 
 //This method goes through all the vertices in the adjacency list
-//although hasmap access time is constant, we still visit every vertex and loop through
+//although hashmap access time is constant, we still visit every vertex and loop through
 //all of its adjacent vertices. This amounts to a time complexity of O(V+E).
 public int dfsColour(int v, boolean vertexColour){
         //init a counter to keep track of the number of vertices visited thus far
@@ -90,6 +87,37 @@ public int dfsColour(int v, boolean vertexColour){
         //the number of vertices in the graph.
         return count;
 }
+
+// ============== Pseudocode of Coloring ==========================
+/*
+DFSColouring(int v, colour):
+        initialize counter to 1
+        set vertex colour to that specified in argument
+        mark vertex as visited
+        AdjacentVertexColour <- !(colour)
+        
+        for each edge e in the adjacency list of v:
+                
+                check if e is not visited:
+                        visit e
+                        colour e <- AdjacentVertexColour
+                
+                else
+                        check if e's colur is the same as v:
+                                return -1
+                        else
+                                continue
+
+                countSum <- DFSColouring(e, AdjacentVertexColour)
+                
+                check if countSum is -1:
+                        return -1
+
+                increment counter by countSum
+
+        return counter
+*/
+
 
 public void SolveTwoCol(){
         //Method runs at O(1)
